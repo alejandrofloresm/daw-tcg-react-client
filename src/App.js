@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
 
@@ -17,7 +18,11 @@ class App extends Component {
   }
 
   componentWillMount() {
-    
+    axios.get(`http://daw-tcg.test/api/cards`)
+      .then(res => {
+        const cards = res.data.data;
+        this.setState({cards: cards});
+      })
   }
 
   render() {
@@ -27,7 +32,7 @@ class App extends Component {
         <ul>
           {
             this.state.cards.map((card, index) => 
-              <li>{card.name}</li>
+              <li key={index}>{card.name}</li>
             )
           }
         </ul>
