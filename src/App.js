@@ -3,23 +3,34 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    cards: [{
+      "id": 1,
+      "name": "Cool Bison",
+      "attack": "28.00",
+      "defense": "5.00",
+      "created_at": "2019-02-07 18:07:22",
+      "updated_at": "2019-02-07 18:07:22",
+      "category_id": "2"
+    }]
+  }
+
+  componentWillMount() {
+    
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Cartas</h1>
+        <ul>
+          {
+            this.state.cards.map((card, index) => 
+              <li>{card.name}</li>
+            )
+          }
+        </ul>
       </div>
     );
   }
