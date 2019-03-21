@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import Card from './Card';
+import { Section, Container, Heading, Columns } from 'react-bulma-components';
 
 class App extends Component {
 
   state = {
     cards: [{
       "id": 1,
-      "name": "Cool Bison",
+      "name": "Cool Bison 2",
       "attack": "28.00",
       "defense": "5.00",
       "created_at": "2019-02-07 18:07:22",
@@ -28,14 +30,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Cartas</h1>
-        <ul>
-          {
-            this.state.cards.map((card, index) => 
-              <li key={index}>{card.name}</li>
-            )
-          }
-        </ul>
+        <Section>
+          <Container>
+            <Heading>Cartas</Heading>
+          </Container>
+        </Section>
+        <Section>
+          <Container>
+            <Columns>
+              {
+                this.state.cards.map((card, index) => 
+                  <Columns.Column key={index} size={3}>
+                    <Card name={card.name} attack={card.attack} defense={card.defense}></Card>
+                  </Columns.Column>
+                )
+              }
+            </Columns>
+          </Container>
+        </Section>
       </div>
     );
   }
